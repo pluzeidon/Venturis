@@ -11,7 +11,9 @@ namespace Venturis
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+             MainPage = new NavigationPage(new MainPage());
+
+            //MainPage = new NavigationPage(new Views.VenturisOriginal("https://www.venturisapp.net/ords/pdb1/f?p=111"));
         }
 
         protected override void OnStart()
