@@ -75,7 +75,7 @@ namespace Venturis.iOS
 
         private void SetSearchText(string text)
         {
-            string javascript = $"javascript: document.getElementById('sb_form_q').value = '{text}';";
+            string javascript = $"javascript: document.getElementById('P130_RESULTADO').value = '{text}'; beep(); apex.submit('SCAN');";
             Control.EvaluateJavaScript(javascript, null);
         }
 

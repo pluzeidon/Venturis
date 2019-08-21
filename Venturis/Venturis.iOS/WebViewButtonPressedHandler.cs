@@ -15,7 +15,7 @@ namespace Venturis.iOS
 
         public void DidReceiveScriptMessage(WKUserContentController userContentController, WKScriptMessage message)
         {
-            customWebView.OnSearchBtnPressed();
+            customWebView.OnStartScanning();
         }
 
         protected override void Dispose(bool disposing)

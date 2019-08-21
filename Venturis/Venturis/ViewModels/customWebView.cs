@@ -12,10 +12,10 @@ namespace Venturis.ViewModels
         public event EventHandler InitScan;
         public event EventHandler SearchPreseed;
 
-        public void OnSearchBtnPressed()
-        {
-            SearchPreseed?.Invoke(this, null);
-        }
+        //public void OnSearchBtnPressed()
+        //{
+        //    SearchPreseed?.Invoke(this, null);
+        //}
 
         public void OnStartScanning()
         {
