@@ -28,7 +28,7 @@ namespace Venturis.Droid
             {
                 callback(uploadMsg, null, null);
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
