@@ -47,6 +47,7 @@ namespace Venturis.Droid
             }
             var chromeClient = new FileChooserWebChromeClient((uploadMsg, acceptType, capture) => {
                 MainActivity.UploadMessage = uploadMsg;
+
                 // Create MyAppFolder at SD card for saving our images
                 File imageStorageDir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(
                         Android.OS.Environment.DirectoryPictures), "MyAppFolder");
