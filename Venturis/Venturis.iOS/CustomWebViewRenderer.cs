@@ -1,4 +1,4 @@
-﻿
+﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(Venturis.ViewModels.customWebView), typeof(Venturis.iOS.CustomWebViewRenderer))]
 
 namespace Venturis.iOS
 {
