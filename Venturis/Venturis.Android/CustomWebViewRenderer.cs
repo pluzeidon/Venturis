@@ -7,7 +7,6 @@ namespace Venturis.Droid
     using Android.Provider;
     using Android.Webkit;
     using Java.Interop;
-    using Java.IO;
     using System;
     using Venturis.ViewModels;
     using Xamarin.Forms;
@@ -48,16 +47,21 @@ namespace Venturis.Droid
             var chromeClient = new FileChooserWebChromeClient((uploadMsg, acceptType, capture) => {
                 MainActivity.UploadMessage = uploadMsg;
 
-                // Create MyAppFolder at SD card for saving our images
-                File imageStorageDir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(
-                        Android.OS.Environment.DirectoryPictures), "MyAppFolder");
-                if (!imageStorageDir.Exists())
-                {
-                    imageStorageDir.Mkdirs();
-                }
-                // Create camera captured image file path and name, add ticks to make it unique 
-                var file = new File(imageStorageDir + File.Separator + "IMG_"
+                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                //documentsPath = Path.Combine(documentsPath, "Photo", "Temp");
+                //Directory.CreateDirectory(documentsPath);
+
+                //// Create MyAppFolder at SD card for saving our images
+                //File imageStorageDir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(
+                //        Android.OS.Environment.DirectoryPictures), "MyAppFolder");
+                //if (!imageStorageDir.Exists())
+                //{
+                //    imageStorageDir.Mkdirs();
+                //}
+                //// Create camera captured image file path and name, add ticks to make it unique 
+                var file = new Java.IO.File(documentsPath + Java.IO.File.Separator + "IMG_"
                     + DateTime.Now.Ticks + ".jpg");
+
                 MainActivity.mCapturedImageURI = Android.Net.Uri.FromFile(file);
                 // Create camera capture image intent and add it to the chooser
                 var captureIntent = new Intent(MediaStore.ActionImageCapture);

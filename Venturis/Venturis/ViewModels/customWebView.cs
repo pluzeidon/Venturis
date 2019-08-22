@@ -10,7 +10,7 @@ namespace Venturis.ViewModels
         public Action Observe;
 
         public event EventHandler InitScan;
-        public event EventHandler SearchPreseed;
+        //public event EventHandler SearchPreseed;
 
         //public void OnSearchBtnPressed()
         //{
