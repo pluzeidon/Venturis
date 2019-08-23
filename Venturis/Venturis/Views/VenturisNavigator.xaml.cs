@@ -57,10 +57,10 @@ namespace Venturis.Views
             return System.Convert.ToBase64String(plainTextBytes);
         }
 
-        void OnBack(object sender, EventArgs args)
-        {
-            cwv.GoBack();
-        }
+        //void OnBack(object sender, EventArgs args)
+        //{
+        //    cwv.GoBack();
+        //}
 
         protected override bool OnBackButtonPressed()
         {

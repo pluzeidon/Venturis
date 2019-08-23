@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Venturis.ViewModels"
              x:Class="Venturis.Views.VenturisNavigator"
-             Title="Venturis Custom">
+             Title="Venturis">
     
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Name="Back" Clicked="OnBack"></ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
 
     <Grid>
