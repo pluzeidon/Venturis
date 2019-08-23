@@ -23,7 +23,7 @@
 
         <controls:customWebView x:Name="cwv"
                                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
-                                Source="https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::"
+                                Source="http://lascalzadashotelsuites.alsondelossantos.com/click.html"
                                 Navigating="OnNavigating"
                                 InitScan="Cwv_InitScan"/>
 
