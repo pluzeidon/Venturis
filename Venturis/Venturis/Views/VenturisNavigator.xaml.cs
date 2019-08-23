@@ -81,8 +81,8 @@ namespace Venturis.Views
 
         string GetUrl()
         {
-            //return "https://www.venturisapp.net/ords/pdb1/f?p=111";
-            return  "http://lascalzadashotelsuites.alsondelossantos.com/click.html";
+            return "https://www.venturisapp.net/ords/pdb1/f?p=111";
+            //return  "http://lascalzadashotelsuites.alsondelossantos.com/click.html";
         }
     }
 }
