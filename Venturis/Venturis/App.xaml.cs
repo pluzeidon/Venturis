@@ -12,7 +12,6 @@ namespace Venturis
             InitializeComponent();
 
             MainPage = new NavigationPage(new VenturisNavigator());
-
             //MainPage = new NavigationPage(new Views.VenturisOriginal("https://www.venturisapp.net/ords/pdb1/f?p=111"));
         }
 
