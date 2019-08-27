@@ -27,6 +27,11 @@ namespace Venturis.iOS
             }
         }
 
+        protected override void dismiss()
+        {
+
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<customWebView> e)
         {
             base.OnElementChanged(e);

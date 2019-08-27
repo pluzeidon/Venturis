@@ -7,6 +7,7 @@ namespace Venturis.Droid
     using Android.Provider;
     using Android.Webkit;
     using Java.Interop;
+    using Java.IO;
     using System;
     using Venturis.ViewModels;
     using Xamarin.Forms;
@@ -44,10 +45,31 @@ namespace Venturis.Droid
                 ((customWebView)e.OldElement).DoSearch = null;
                 ((customWebView)e.OldElement).Observe = null;
             }
+            
+            
+
+
             var chromeClient = new FileChooserWebChromeClient((uploadMsg, acceptType, capture) => {
                 MainActivity.UploadMessage = uploadMsg;
 
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                File imgFile = new File("/sdcard/Pictures/comprobante.jpg");
+                if (imgFile != null)
+                {
+                    imgFile.Delete();
+                }
+
+                File imageStorageDir = new File(global::Android.OS.Environment.GetExternalStoragePublicDirectory(global::Android.OS.Environment.DirectoryPictures), "");
+                if (!imageStorageDir.Exists())
+                {
+                    imageStorageDir.Mkdir();
+                }
+                File file = new File(imageStorageDir + File.Separator + "comprobante" + ".jpg");
+                MainActivity.mCapturedImageURI = Android.Net.Uri.FromFile(file);
+
+                Intent captureIntent = new Intent(Android.Provider.MediaStore.ActionImageCapture);
+                captureIntent.PutExtra(MediaStore.ExtraOutput, MainActivity.mCapturedImageURI);
+
+                //var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 //documentsPath = Path.Combine(documentsPath, "Photo", "Temp");
                 //Directory.CreateDirectory(documentsPath);
 
@@ -59,19 +81,19 @@ namespace Venturis.Droid
                 //    imageStorageDir.Mkdirs();
                 //}
                 //// Create camera captured image file path and name, add ticks to make it unique 
-                var file = new Java.IO.File(documentsPath + Java.IO.File.Separator + "IMG_"
-                    + DateTime.Now.Ticks + ".jpg");
+                //var file = new Java.IO.File(documentsPath + Java.IO.File.Separator + "IMG_"
+                //    + DateTime.Now.Ticks + ".jpg");
 
-                MainActivity.mCapturedImageURI = Android.Net.Uri.FromFile(file);
+                //MainActivity.mCapturedImageURI = Android.Net.Uri.FromFile(file);
                 // Create camera capture image intent and add it to the chooser
-                var captureIntent = new Intent(MediaStore.ActionImageCapture);
-                captureIntent.PutExtra(MediaStore.ExtraOutput, MainActivity.mCapturedImageURI);
+                //var captureIntent = new Intent(MediaStore.ActionImageCapture);
+                //captureIntent.PutExtra(MediaStore.ExtraOutput, MainActivity.mCapturedImageURI);
                 var i = new Intent(Intent.ActionGetContent);
                 i.AddCategory(Intent.CategoryOpenable);
                 i.SetType("image/*");
                 var chooserIntent = Intent.CreateChooser(i, "Choose image");
                 chooserIntent.PutExtra(Intent.ExtraInitialIntents, new Intent[] { captureIntent });
-                ((Activity)Forms.Context).StartActivityForResult(chooserIntent, FILECHOOSER_RESULTCODE);
+                ((MainActivity)this.Context).StartActivityForResult(chooserIntent, FILECHOOSER_RESULTCODE);
             });
             Control.SetWebChromeClient(chromeClient);
         }
