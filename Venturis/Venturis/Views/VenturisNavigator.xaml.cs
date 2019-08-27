@@ -81,7 +81,7 @@ namespace Venturis.Views
 
         string GetUrl()
         {
-            return "https://qdxcloud01.net/ords/pdb1/f?p=111:LOGIN_DESKTOP:8150988639774::::";
+            return "https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::";
 
             //return  "http://lascalzadashotelsuites.alsondelossantos.com/click.html";
         }
