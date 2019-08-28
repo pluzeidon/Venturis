@@ -184,4 +184,7 @@
       <Name>Venturis</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Splash1024.png" />
+  </ItemGroup>
 </Project>
