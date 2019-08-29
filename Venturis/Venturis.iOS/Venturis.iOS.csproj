@@ -180,11 +180,12 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Venturis\Venturis.csproj">
-      <Project>{FB942882-2C46-402D-82AF-CA6A87F57354}</Project>
+      <Project>{BE93C00B-AFC1-4D78-A54E-ACA9C2915C6C}</Project>
       <Name>Venturis</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Splash1024.png" />
+    <BundleResource Include="Resources\Icon-256.png" />
   </ItemGroup>
 </Project>
