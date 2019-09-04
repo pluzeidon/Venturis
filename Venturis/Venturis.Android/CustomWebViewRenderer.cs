@@ -63,7 +63,8 @@ namespace Venturis.Droid
                 {
                     imageStorageDir.Mkdir();
                 }
-                File file = new File(imageStorageDir + File.Separator + "comprobante" + ".jpg");
+                //File file = new File(imageStorageDir + File.Separator + "comprobante" + ".jpg");
+                File file = new File(imageStorageDir + File.Separator + "VC" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg");
                 MainActivity.mCapturedImageURI = Android.Net.Uri.FromFile(file);
 
                 Intent captureIntent = new Intent(Android.Provider.MediaStore.ActionImageCapture);

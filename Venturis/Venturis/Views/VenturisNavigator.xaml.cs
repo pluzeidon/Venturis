@@ -16,7 +16,8 @@ namespace Venturis.Views
         public VenturisNavigator()
         {
             InitializeComponent();
-            Solicitar_Permisos();
+            Solicitar_Permisos_Camara();
+            Solicitar_Permisos_MediaLibrary();
             cwv.Source = Url = GetUrl();
         }
         private void Cwv_InitScan(object sender, EventArgs e)
@@ -24,7 +25,7 @@ namespace Venturis.Views
             Scanner();
         }
 
-        private async void Solicitar_Permisos()
+        private async void Solicitar_Permisos_Camara()
         {
             try
             {
@@ -40,6 +41,35 @@ namespace Venturis.Views
                     //Best practice to always check that the key exists
                     if (results.ContainsKey(Permission.Camera))
                         status = results[Permission.Camera];
+                }
+
+                else if (status != PermissionStatus.Unknown)
+                {
+                    await DisplayAlert("Camera Denied", "Can not continue, try again.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
+
+        private async void Solicitar_Permisos_MediaLibrary()
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (status != PermissionStatus.Granted)
+                {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
+                    {
+                        await DisplayAlert("Need Camera", "Gunna need", "OK");
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                    //Best practice to always check that the key exists
+                    if (results.ContainsKey(Permission.Storage))
+                        status = results[Permission.Storage];
                 }
 
                 else if (status != PermissionStatus.Unknown)
