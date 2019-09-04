@@ -26,6 +26,8 @@ namespace Venturis.Droid
             Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
             LoadApplication(new App());
         }
 

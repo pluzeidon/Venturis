@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,11 +16,41 @@ namespace Venturis.Views
         public VenturisNavigator()
         {
             InitializeComponent();
+            Solicitar_Permisos();
             cwv.Source = Url = GetUrl();
         }
         private void Cwv_InitScan(object sender, EventArgs e)
         {
             Scanner();
+        }
+
+        private async void Solicitar_Permisos()
+        {
+            try
+            {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                if (status != PermissionStatus.Granted)
+                {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
+                    {
+                        await DisplayAlert("Need Camera", "Gunna need", "OK");
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                    //Best practice to always check that the key exists
+                    if (results.ContainsKey(Permission.Camera))
+                        status = results[Permission.Camera];
+                }
+
+                else if (status != PermissionStatus.Unknown)
+                {
+                    await DisplayAlert("Camera Denied", "Can not continue, try again.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
         }
 
         private async void Scanner()
