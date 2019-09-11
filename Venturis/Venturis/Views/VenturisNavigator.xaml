@@ -3,28 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Venturis.ViewModels"
              x:Class="Venturis.Views.VenturisNavigator"
-             Title="Venturis">
-    
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Name="Back" Clicked="OnBack"></ToolbarItem>
-    </ContentPage.ToolbarItems>-->
+             Title="Venturis"
+             NavigationPage.HasNavigationBar="False">
 
 
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-    </Grid>-->
 
-    <controls:customWebView x:Name="cwv"
-                            Source="https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::"
-                            Navigating="OnNavigating"
-                            InitScan="Cwv_InitScan"/>
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <controls:customWebView x:Name="cwv"                            
+                                Source="https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::"                            
+                                Navigating="OnNavigating"                            
+                                Navigated="OnNavigated"                            
+                                InitScan="Cwv_InitScan"                           
+                                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"        
+                                AbsoluteLayout.LayoutFlags="All"        
+                                HorizontalOptions="FillAndExpand"        
+                                VerticalOptions="FillAndExpand"
+                                IsVisible="True"/>
+        
+        <ActivityIndicator x:Name="activityIndicator" 
+                           AbsoluteLayout.LayoutFlags="PositionProportional" 
+                           AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"  
+                           BackgroundColor="Transparent"
+                           IsRunning="True" 
+                           IsVisible="True"  />
+    </AbsoluteLayout>
+
+
+
 
 </ContentPage>

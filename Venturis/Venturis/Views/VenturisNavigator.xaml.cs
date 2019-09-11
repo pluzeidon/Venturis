@@ -15,13 +15,20 @@ namespace Venturis.Views
         string Url;
 
         public VenturisNavigator()
-        {
-            InitializeComponent();
+        {           
+            InitializeComponent();            
             GetPermissionsAll();
-            //Solicitar_Permisos_Camara();
-            //Solicitar_Permisos_MediaLibrary();
             cwv.Source = Url = GetUrl();
+            //cwv.HeightRequest = 500;
+            //cwv.WidthRequest = 500;
         }
+
+        //protected async override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    await activity_indicator.ProgressTo(0.9, 900, Easing.SpringIn);
+
+        //}
         private void Cwv_InitScan(object sender, EventArgs e)
         {
             Scanner();
@@ -121,11 +128,6 @@ namespace Venturis.Views
             return System.Convert.ToBase64String(plainTextBytes);
         }
 
-        //void OnBack(object sender, EventArgs args)
-        //{
-        //    cwv.GoBack();
-        //}
-
         protected override bool OnBackButtonPressed()
         {
             if (cwv.CanGoBack)
@@ -140,7 +142,20 @@ namespace Venturis.Views
         {
             // Comprobando si estamos en la URL de la página de inicio
             // browser.CanGoBack no parece funcionar (no se actualiza a tiempo)
-            NavigationPage.SetHasNavigationBar(this, args.Url != Url);
+            activityIndicator.IsRunning = true;
+            activityIndicator.IsVisible = true;
+            cwv.IsEnabled = false;
+            //NavigationPage.SetHasNavigationBar(this, args.Url != Url);
+        }
+
+        void OnNavigated(object sender, WebNavigatedEventArgs e)
+        {
+            if (e.Result == WebNavigationResult.Success)
+            {
+                activityIndicator.IsRunning = false;
+                activityIndicator.IsVisible = false;
+                cwv.IsEnabled = true;
+            }
         }
 
         string GetUrl()
