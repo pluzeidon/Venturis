@@ -1,6 +1,7 @@
 ﻿using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,8 +17,9 @@ namespace Venturis.Views
         public VenturisNavigator()
         {
             InitializeComponent();
-            Solicitar_Permisos_Camara();
-            Solicitar_Permisos_MediaLibrary();
+            GetPermissionsAll();
+            //Solicitar_Permisos_Camara();
+            //Solicitar_Permisos_MediaLibrary();
             cwv.Source = Url = GetUrl();
         }
         private void Cwv_InitScan(object sender, EventArgs e)
@@ -146,6 +148,67 @@ namespace Venturis.Views
             return "https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::";
 
             //return  "http://lascalzadashotelsuites.alsondelossantos.com/click.html";
+        }
+
+        private async void GetPermissionsAll()
+        {
+            await GetPermissions();
+        }
+
+        public static async Task<bool> GetPermissions()
+        {
+            bool permissionsGranted = true;
+
+            var permissionsStartList = new List<Permission>()
+        {
+            Permission.Location,
+            Permission.LocationAlways,
+            Permission.LocationWhenInUse,
+            Permission.Storage,
+            Permission.Camera
+        };
+
+            var permissionsNeededList = new List<Permission>();
+            try
+            {
+                foreach (var permission in permissionsStartList)
+                {
+                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
+                    if (status != PermissionStatus.Granted)
+                    {
+                        permissionsNeededList.Add(permission);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            var results = await CrossPermissions.Current.RequestPermissionsAsync(permissionsNeededList.ToArray());
+
+            try
+            {
+                foreach (var permission in permissionsNeededList)
+                {
+                    var status = PermissionStatus.Unknown;
+                    //Best practice to always check that the key exists
+                    if (results.ContainsKey(permission))
+                        status = results[permission];
+                    if (status == PermissionStatus.Granted || status == PermissionStatus.Unknown)
+                    {
+                        permissionsGranted = true;
+                    }
+                    else
+                    {
+                        permissionsGranted = false;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return permissionsGranted;
         }
     }
 }

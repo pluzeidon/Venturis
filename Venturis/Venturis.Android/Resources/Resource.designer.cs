@@ -2351,26 +2351,26 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
+			// aapt resource value: 0x7f020131
+			public const int avd_hide_password_1 = 2130837809;
+			
 			// aapt resource value: 0x7f020132
-			public const int avd_hide_password_1 = 2130837810;
+			public const int avd_hide_password_2 = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int avd_hide_password_2 = 2130837811;
-			
-			// aapt resource value: 0x7f020134
-			public const int avd_hide_password_3 = 2130837812;
+			public const int avd_hide_password_3 = 2130837811;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
+			// aapt resource value: 0x7f020134
+			public const int avd_show_password_1 = 2130837812;
+			
 			// aapt resource value: 0x7f020135
-			public const int avd_show_password_1 = 2130837813;
+			public const int avd_show_password_2 = 2130837813;
 			
 			// aapt resource value: 0x7f020136
-			public const int avd_show_password_2 = 2130837814;
-			
-			// aapt resource value: 0x7f020137
-			public const int avd_show_password_3 = 2130837815;
+			public const int avd_show_password_3 = 2130837814;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -3011,11 +3011,11 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f020129
 			public const int notification_icon_background = 2130837801;
 			
-			// aapt resource value: 0x7f020130
-			public const int notification_template_icon_bg = 2130837808;
+			// aapt resource value: 0x7f02012f
+			public const int notification_template_icon_bg = 2130837807;
 			
-			// aapt resource value: 0x7f020131
-			public const int notification_template_icon_low_bg = 2130837809;
+			// aapt resource value: 0x7f020130
+			public const int notification_template_icon_low_bg = 2130837808;
 			
 			// aapt resource value: 0x7f02012a
 			public const int notification_tile_bg = 2130837802;
@@ -3027,13 +3027,10 @@ namespace Venturis.Droid
 			public const int Splash = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int SplashScreen = 2130837805;
+			public const int tooltip_frame_dark = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int tooltip_frame_dark = 2130837806;
-			
-			// aapt resource value: 0x7f02012f
-			public const int tooltip_frame_light = 2130837807;
+			public const int tooltip_frame_light = 2130837806;
 			
 			static Drawable()
 			{
@@ -3186,8 +3183,8 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f0a008d
 			public const int container = 2131361933;
 			
-			// aapt resource value: 0x7f0a00c9
-			public const int contentFrame = 2131361993;
+			// aapt resource value: 0x7f0a00ca
+			public const int contentFrame = 2131361994;
 			
 			// aapt resource value: 0x7f0a0066
 			public const int contentPanel = 2131361894;
@@ -3312,14 +3309,14 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f0a0061
 			public const int list_item = 2131361889;
 			
-			// aapt resource value: 0x7f0a00cb
-			public const int masked = 2131361995;
+			// aapt resource value: 0x7f0a00cc
+			public const int masked = 2131361996;
 			
 			// aapt resource value: 0x7f0a00b9
 			public const int media_actions = 2131361977;
 			
-			// aapt resource value: 0x7f0a00c8
-			public const int message = 2131361992;
+			// aapt resource value: 0x7f0a00c9
+			public const int message = 2131361993;
 			
 			// aapt resource value: 0x7f0a0031
 			public const int middle = 2131361841;
@@ -3528,8 +3525,8 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f0a0025
 			public const int showTitle = 2131361829;
 			
-			// aapt resource value: 0x7f0a00c6
-			public const int sliding_tabs = 2131361990;
+			// aapt resource value: 0x7f0a00c7
+			public const int sliding_tabs = 2131361991;
 			
 			// aapt resource value: 0x7f0a008b
 			public const int smallLabel = 2131361931;
@@ -3609,8 +3606,8 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f0a006f
 			public const int title_template = 2131361903;
 			
-			// aapt resource value: 0x7f0a00c7
-			public const int toolbar = 2131361991;
+			// aapt resource value: 0x7f0a00c8
+			public const int toolbar = 2131361992;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int top = 2131361854;
@@ -3636,6 +3633,9 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f0a0013
 			public const int transition_transform = 2131361811;
 			
+			// aapt resource value: 0x7f0a00c6
+			public const int txtAppVersion = 2131361990;
+			
 			// aapt resource value: 0x7f0a002d
 			public const int uniform = 2131361837;
 			
@@ -3648,8 +3648,8 @@ namespace Venturis.Droid
 			// aapt resource value: 0x7f0a0016
 			public const int view_offset_helper = 2131361814;
 			
-			// aapt resource value: 0x7f0a00ca
-			public const int visible = 2131361994;
+			// aapt resource value: 0x7f0a00cb
+			public const int visible = 2131361995;
 			
 			// aapt resource value: 0x7f0a00ab
 			public const int volume_item_container = 2131361963;
@@ -3937,22 +3937,25 @@ namespace Venturis.Droid
 			public const int select_dialog_singlechoice_material = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int support_simple_spinner_dropdown_item = 2130968640;
+			public const int SplashScreen = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int Tabbar = 2130968641;
+			public const int support_simple_spinner_dropdown_item = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int Toolbar = 2130968642;
+			public const int Tabbar = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int tooltip = 2130968643;
+			public const int Toolbar = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int zxingscanneractivitylayout = 2130968644;
+			public const int tooltip = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int zxingscannerfragmentlayout = 2130968645;
+			public const int zxingscanneractivitylayout = 2130968645;
+			
+			// aapt resource value: 0x7f040046
+			public const int zxingscannerfragmentlayout = 2130968646;
 			
 			static Layout()
 			{

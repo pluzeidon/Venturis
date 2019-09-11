@@ -7,7 +7,7 @@ using Xamarin.Forms;
 namespace Venturis.Droid
 {
     [Activity(Label = "Venturis", 
-              Icon = "@drawable/icon", 
+              Icon = "@drawable/Icon",
               Theme = "@style/MainTheme", 
               MainLauncher = false, 
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -24,6 +24,7 @@ namespace Venturis.Droid
             //Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
             base.OnCreate(savedInstanceState);
+            //SetContentView(Resource.Layout.SplashScreen);
             Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
