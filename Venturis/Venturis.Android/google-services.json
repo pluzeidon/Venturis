@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "415461620897",
+    "firebase_url": "https://api-7317546688454675259-180471.firebaseio.com",
+    "project_id": "api-7317546688454675259-180471",
+    "storage_bucket": "api-7317546688454675259-180471.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415461620897:android:782ae089d7880528fdc4e0",
+        "android_client_info": {
+          "package_name": "com.venturisExpenses.App"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415461620897-k2fkpk7cmomcj41q539q0v6kp5viqiit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUDn-702WRO9brs3QVW2YRelX3e-ESYsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415461620897-k2fkpk7cmomcj41q539q0v6kp5viqiit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
