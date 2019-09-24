@@ -8,6 +8,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Graphics;
+using Firebase.Iid;
 
 namespace Venturis.Droid
 {
@@ -21,6 +22,7 @@ namespace Venturis.Droid
 
         public override void OnMessageReceived(RemoteMessage message)
         {
+            
             if (!message.Data.GetEnumerator().MoveNext())
                 SendNotification(message.GetNotification().Title, message.GetNotification().Body);
             else
@@ -67,7 +69,8 @@ namespace Venturis.Droid
         public override void OnNewToken(string token)
         {
             Log.Debug(TAG, "FCM token: " + token);
-            SendRegistrationToServer(token);
+            //SendRegistrationToServer(token);
+            
         }
 
         void SendRegistrationToServer(string token)
@@ -77,6 +80,22 @@ namespace Venturis.Droid
                                         Constants.ListenConnectionString, this);
 
             var tags = new List<string>() { };
+            tags.Add("userId:trubio@quadrantix.com");
+            var regID = hub.Register(token, tags.ToArray()).RegistrationId;
+
+            Log.Debug(TAG, $"Successful registration of ID {regID}");
+
+
+        }
+        public void RegisterDevice(string userId, Context Context)
+        {
+            string token = FirebaseInstanceId.Instance.Token;
+            // Register with Notification Hubs
+            hub = new NotificationHub(Constants.NotificationHubName,
+                                        Constants.ListenConnectionString, Context);
+
+            var tags = new List<string>() { };
+            tags.Add("userId:" + userId);
             var regID = hub.Register(token, tags.ToArray()).RegistrationId;
 
             Log.Debug(TAG, $"Successful registration of ID {regID}");

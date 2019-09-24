@@ -12,6 +12,7 @@ namespace Venturis.Droid
     using Venturis.ViewModels;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
+    using Venturis.Interfaces;
     public class CustomWebViewRenderer : WebViewRenderer
     {
         private static int FILECHOOSER_RESULTCODE = 1;
@@ -35,8 +36,6 @@ namespace Venturis.Droid
             if (e.NewElement != null)
             {
                 ((customWebView)e.NewElement).SetTextScaned = SetTextScaned;
-                //((customWebView)e.NewElement).DoSearch = DoSearch;
-                //((customWebView)e.NewElement).Observe = Observe;
             }
 
             if (e.OldElement != null)
@@ -44,51 +43,21 @@ namespace Venturis.Droid
                 ((customWebView)e.OldElement).SetTextScaned = null;
                 ((customWebView)e.OldElement).DoSearch = null;
                 ((customWebView)e.OldElement).Observe = null;
-            }
-            
-            
-
+            }        
 
             var chromeClient = new FileChooserWebChromeClient((uploadMsg, acceptType, capture) => {
-                MainActivity.UploadMessage = uploadMsg;
-
-                File imgFile = new File("/sdcard/Pictures/comprobante.jpg");
-                if (imgFile != null)
-                {
-                    imgFile.Delete();
-                }
-
+                MainActivity.UploadMessage = uploadMsg;                
                 File imageStorageDir = new File(global::Android.OS.Environment.GetExternalStoragePublicDirectory(global::Android.OS.Environment.DirectoryPictures), "");
                 if (!imageStorageDir.Exists())
                 {
                     imageStorageDir.Mkdir();
                 }
-                //File file = new File(imageStorageDir + File.Separator + "comprobante" + ".jpg");
                 File file = new File(imageStorageDir + File.Separator + "VC" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg");
                 MainActivity.mCapturedImageURI = Android.Net.Uri.FromFile(file);
 
                 Intent captureIntent = new Intent(Android.Provider.MediaStore.ActionImageCapture);
                 captureIntent.PutExtra(MediaStore.ExtraOutput, MainActivity.mCapturedImageURI);
 
-                //var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                //documentsPath = Path.Combine(documentsPath, "Photo", "Temp");
-                //Directory.CreateDirectory(documentsPath);
-
-                //// Create MyAppFolder at SD card for saving our images
-                //File imageStorageDir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(
-                //        Android.OS.Environment.DirectoryPictures), "MyAppFolder");
-                //if (!imageStorageDir.Exists())
-                //{
-                //    imageStorageDir.Mkdirs();
-                //}
-                //// Create camera captured image file path and name, add ticks to make it unique 
-                //var file = new Java.IO.File(documentsPath + Java.IO.File.Separator + "IMG_"
-                //    + DateTime.Now.Ticks + ".jpg");
-
-                //MainActivity.mCapturedImageURI = Android.Net.Uri.FromFile(file);
-                // Create camera capture image intent and add it to the chooser
-                //var captureIntent = new Intent(MediaStore.ActionImageCapture);
-                //captureIntent.PutExtra(MediaStore.ExtraOutput, MainActivity.mCapturedImageURI);
                 var i = new Intent(Intent.ActionGetContent);
                 i.AddCategory(Intent.CategoryOpenable);
                 i.SetType("image/*");
@@ -105,17 +74,6 @@ namespace Venturis.Droid
             Control.EvaluateJavascript(javascript, null);
         }
 
-        //private void DoSearch()
-        //{
-        //    string javascript = "javascript: document.getElementById('sbBtn').click();";
-        //    Control.EvaluateJavascript(javascript, null);
-        //}
-
-        //private void Observe()
-        //{
-        //    string javascript = "javascript: document.getElementById('sbBtn').onclick = function() { Test.ScanStarted(); };";
-        //    Control.EvaluateJavascript(javascript, null);
-        //}
     }
 
     public class JavaScriptInterface : Java.Lang.Object
@@ -132,5 +90,16 @@ namespace Venturis.Droid
         {
             customwebView.OnStartScanning();
         }
+
+        [JavascriptInterface()]
+        [Export("SendUserId")]
+        public void SendUserId(string userId)
+        {
+            customwebView.OnSendUserId(userId);
+            MyFirebaseMessagingService myFirebaseMessagingService = new MyFirebaseMessagingService();
+            MainActivity a = new MainActivity();
+            a.RegisterDevice(userId);
+        }
+
     }
 }

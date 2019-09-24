@@ -10,6 +10,7 @@ namespace Venturis.ViewModels
         public Action Observe;
 
         public event EventHandler InitScan;
+        public event EventHandler InitSendUserId;
         //public event EventHandler SearchPreseed;
 
         //public void OnSearchBtnPressed()
@@ -20,6 +21,12 @@ namespace Venturis.ViewModels
         public void OnStartScanning()
         {
             InitScan.Invoke(this, null);
+        }
+
+        public void OnSendUserId(string userId)
+        {
+            EventArgs eventArgs = new EventArgs();
+            InitSendUserId.Invoke(this, eventArgs);
         }
     }
 }

@@ -5,6 +5,7 @@ using Android.Webkit;
 using Xamarin.Forms;
 using Android.Util;
 using Android.Gms.Common;
+using Venturis.Interfaces;
 
 namespace Venturis.Droid
 {
@@ -16,6 +17,20 @@ namespace Venturis.Droid
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        #region Singleton
+
+        private static MainActivity instance;
+        public static MainActivity GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MainActivity();
+            }
+            return instance;
+        }
+
+        #endregion
+
         public static IValueCallback UploadMessage;
         private static int FILECHOOSER_RESULTCODE = 1;
         public static Android.Net.Uri mCapturedImageURI;
@@ -23,6 +38,7 @@ namespace Venturis.Droid
         internal static readonly string CHANNEL_ID = "my_notification_channel";
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            instance = this;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             //Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
@@ -110,6 +126,12 @@ namespace Venturis.Droid
 
             var notificationManager = (NotificationManager)GetSystemService(NotificationService);
             notificationManager.CreateNotificationChannel(channel);
+        }
+
+        public void RegisterDevice(string userId)
+        {
+            var register = DependencyService.Get<IRegisterDevice>();
+            register.RegisterDevice(userId);
         }
 
     }

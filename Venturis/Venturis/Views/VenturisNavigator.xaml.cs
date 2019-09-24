@@ -19,6 +19,7 @@ namespace Venturis.Views
             InitializeComponent();            
             GetPermissionsAll();
             cwv.Source = Url = GetUrl();
+            cwv.Source = (cwv.Source as UrlWebViewSource).Url;
             //cwv.HeightRequest = 500;
             //cwv.WidthRequest = 500;
         }
@@ -162,7 +163,9 @@ namespace Venturis.Views
         {
             return "https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::";
 
-            //return  "http://lascalzadashotelsuites.alsondelossantos.com/click.html";
+            //return "http://129.213.116.148:8280/apldv01/f?p=111";
+
+            //return  "http://venturisexpenses-001-site1.etempurl.com/login.aspx";
         }
 
         private async void GetPermissionsAll()
@@ -224,6 +227,11 @@ namespace Venturis.Views
             {
             }
             return permissionsGranted;
+        }
+
+        private void Cwv_InitSendUserId(object sender, EventArgs e)
+        {
+
         }
     }
 }

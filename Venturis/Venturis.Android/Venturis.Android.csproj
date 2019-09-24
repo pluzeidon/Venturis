@@ -96,6 +96,7 @@
     <Compile Include="CustomWebViewRenderer.cs" />
     <Compile Include="FileChooserWebChromeClient.cs" />
     <Compile Include="HybridWebViewRenderer.cs" />
+    <Compile Include="Implementations\RegistrationDevice.cs" />
     <Compile Include="JavascriptWebViewClient.cs" />
     <Compile Include="JSBridge.cs" />
     <Compile Include="MainActivity.cs" />
