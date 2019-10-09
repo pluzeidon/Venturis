@@ -19,10 +19,12 @@ namespace Venturis.Views
             InitializeComponent();            
             GetPermissionsAll();
             cwv.Source = Url = GetUrl();
-            cwv.Source = (cwv.Source as UrlWebViewSource).Url;
+            //cwv.Source = (cwv.Source as UrlWebViewSource).Url;
             //cwv.HeightRequest = 500;
             //cwv.WidthRequest = 500;
         }
+
+        
 
         //protected async override void OnAppearing()
         //{
@@ -161,9 +163,11 @@ namespace Venturis.Views
 
         string GetUrl()
         {
-            return "https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::";
+            //return "https://www.venturisapp.net/ords/pdb1/f?p=111:1:13489738520152::NO:1::";
 
-            //return "http://129.213.116.148:8280/apldv01/f?p=111";
+            //return "http://129.213.116.148:8180/aplpr01/f?p=111";
+
+            return "https://venturisapp.net/apldv01/f?p=111";
 
             //return  "http://venturisexpenses-001-site1.etempurl.com/login.aspx";
         }

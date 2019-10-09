@@ -13,6 +13,8 @@ namespace Venturis.Droid
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
     using Venturis.Interfaces;
+    using Android.Net.Http;
+
     public class CustomWebViewRenderer : WebViewRenderer
     {
         private static int FILECHOOSER_RESULTCODE = 1;
@@ -36,6 +38,8 @@ namespace Venturis.Droid
             if (e.NewElement != null)
             {
                 ((customWebView)e.NewElement).SetTextScaned = SetTextScaned;
+                this.Control.SetWebViewClient(new MyFormsWebViewClient(this));
+
             }
 
             if (e.OldElement != null)
@@ -43,6 +47,7 @@ namespace Venturis.Droid
                 ((customWebView)e.OldElement).SetTextScaned = null;
                 ((customWebView)e.OldElement).DoSearch = null;
                 ((customWebView)e.OldElement).Observe = null;
+                this.Control.SetWebViewClient(new MyFormsWebViewClient(this));
             }        
 
             var chromeClient = new FileChooserWebChromeClient((uploadMsg, acceptType, capture) => {
@@ -101,5 +106,47 @@ namespace Venturis.Droid
             a.RegisterDevice(userId);
         }
 
+    }
+
+    internal class MyFormsWebViewClient : FormsWebViewClient
+    {
+        CustomWebViewRenderer _renderer;
+
+        public MyFormsWebViewClient(CustomWebViewRenderer renderer) : base(renderer)
+        {
+            _renderer = renderer;
+        }
+
+        public override void OnReceivedSslError(Android.Webkit.WebView view, SslErrorHandler handler, SslError error)
+        {
+            handler.Proceed();
+            //AlertDialog.Builder builder = new AlertDialog.Builder((Activity)Forms.Context);
+            //AlertDialog ad = builder.Create();
+            //string message = "Zertifikat Fehler";
+            //switch (error.PrimaryError)
+            //{
+            //    case SslErrorType.Untrusted:
+            //        message = "Zertifikat ist nicht vertrauenswürdig."; break;
+            //    case SslErrorType.Expired:
+            //        message = "Zertifikat ist abgelaufen."; break;
+            //    case SslErrorType.Idmismatch:
+            //        message = "Zertifikat ID ist fehlerhaft."; break;
+            //    case SslErrorType.Notyetvalid:
+            //        message = "Zertifikat ist noch nicht gültig."; break;
+            //}
+            //message += " Möchten Sie trotzdem fortfahren?";
+            //ad.SetTitle("SSL Zertifikat Fehler");
+            //ad.SetMessage(message);
+            //ad.SetButton("OK", (sender, args) =>
+            //{
+            //    handler.Proceed();
+            //});
+            //ad.SetButton2("Cancel", (sender, args) =>
+            //{
+            //    handler.Cancel();
+            //});
+            //ad.SetIcon(Android.Resource.Drawable.IcDialogAlert);
+            //ad.Show();
+        }
     }
 }
