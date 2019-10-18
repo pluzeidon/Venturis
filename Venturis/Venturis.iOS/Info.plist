@@ -25,13 +25,11 @@
 	<key>CFBundleDisplayName</key>
 	<string>Venturis</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.Venturis</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>com.VenturisExpenses.Quadrantix</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
-	<string>Venturis</string>
+	<string>Venturis Expenses </string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSCameraUsageDescription</key>
@@ -40,5 +38,9 @@
 	<string>This app needs access to photos.</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImages.launchimage</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.6</string>
+	<key>CFBundleVersion</key>
+	<string>1.6</string>
 </dict>
 </plist>
