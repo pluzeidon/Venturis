@@ -95,7 +95,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomWebViewRenderer.cs" />
-    <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="WebViewButtonPressedHandler.cs" />
