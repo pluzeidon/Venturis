@@ -22,6 +22,7 @@ namespace Venturis.Views
             //cwv.Source = (cwv.Source as UrlWebViewSource).Url;
             //cwv.HeightRequest = 500;
             //cwv.WidthRequest = 500;
+            //trubio@quadrantix.com
         }
 
         
@@ -167,7 +168,7 @@ namespace Venturis.Views
 
             //return "http://129.213.116.148:8180/aplpr01/f?p=111";
 
-            return "https://venturisapp.net/apldv01/f?p=111";
+            return "https://venturisapp.net/aplpr01/f?p=111";  // CAT
 
             //return  "http://venturisexpenses-001-site1.etempurl.com/login.aspx";
         }
