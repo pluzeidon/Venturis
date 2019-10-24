@@ -36,11 +36,19 @@
 	<string>This app needs access to the camera to take photos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to photos.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app needs access to calendar.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to Location.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to Location.</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImages.launchimage</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.6</string>
+	<string>1.9</string>
 	<key>CFBundleVersion</key>
-	<string>1.6</string>
+	<string>1.9</string>
+	<key>Custom Property</key>
+	<string></string>
 </dict>
 </plist>
