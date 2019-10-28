@@ -146,20 +146,20 @@ namespace Venturis.Views
         {
             // Comprobando si estamos en la URL de la página de inicio
             // browser.CanGoBack no parece funcionar (no se actualiza a tiempo)
-            activityIndicator.IsRunning = true;
-            activityIndicator.IsVisible = true;
-            cwv.IsEnabled = false;
+            //activityIndicator.IsRunning = true;
+            //activityIndicator.IsVisible = true;
+            //cwv.IsEnabled = false;
             //NavigationPage.SetHasNavigationBar(this, args.Url != Url);
         }
 
         void OnNavigated(object sender, WebNavigatedEventArgs e)
         {
-            if (e.Result == WebNavigationResult.Success)
-            {
-                activityIndicator.IsRunning = false;
-                activityIndicator.IsVisible = false;
-                cwv.IsEnabled = true;
-            }
+            //if (e.Result == WebNavigationResult.Success)
+            //{
+            //    activityIndicator.IsRunning = false;
+            //    activityIndicator.IsVisible = false;
+            //    cwv.IsEnabled = true;
+            //}
         }
 
         string GetUrl()
@@ -168,7 +168,7 @@ namespace Venturis.Views
 
             //return "http://129.213.116.148:8180/aplpr01/f?p=111";
 
-            return "https://venturisapp.net/apldv01/f?p=111";  // CAT
+            return "https://venturisapp.net/aplpr01/f?p=111";  // CAT
 
             //return  "http://venturisexpenses-001-site1.etempurl.com/login.aspx";
         }
