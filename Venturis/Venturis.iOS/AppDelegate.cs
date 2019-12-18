@@ -72,35 +72,35 @@ namespace Venturis.iOS
             SBNotificationHub Hub = new SBNotificationHub(ConstantsIOS.ConnectionString, ConstantsIOS.NotificationHubPath);
 
             // update registration with Azure Notification Hub
-            Hub.UnregisterAllAsync(deviceToken, (error) =>
-            {
-                if (error != null)
-                {
-                    Debug.WriteLine($"Unable to call unregister {error}");
-                    return;
-                }
+            //Hub.UnregisterAllAsync(deviceToken, (error) =>
+            //{
+            //    if (error != null)
+            //    {
+            //        Debug.WriteLine($"Unable to call unregister {error}");
+            //        return;
+            //    }
 
-                var tags = new NSSet(AppConstants.SubscriptionTags.ToArray());
-                Hub.RegisterNativeAsync(deviceToken, tags, (errorCallback) =>
-                {
-                    if (errorCallback != null)
-                    {
-                        Debug.WriteLine($"RegisterNativeAsync error: {errorCallback}");
-                    }
-                });
+            //    var tags = new NSSet(AppConstants.SubscriptionTags.ToArray());
+            //    Hub.RegisterNativeAsync(deviceToken, tags, (errorCallback) =>
+            //    {
+            //        if (errorCallback != null)
+            //        {
+            //            Debug.WriteLine($"RegisterNativeAsync error: {errorCallback}");
+            //        }
+            //    });
 
-                var templateExpiration = DateTime.Now.AddDays(120).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
-                Hub.RegisterTemplateAsync(deviceToken, "defaultTemplate", AppConstants.APNTemplateBody, templateExpiration, tags, (errorCallback) =>
-                {
-                    if (errorCallback != null)
-                    {
-                        if (errorCallback != null)
-                        {
-                            Debug.WriteLine($"RegisterTemplateAsync error: {errorCallback}");
-                        }
-                    }
-                });
-            });
+            //    var templateExpiration = DateTime.Now.AddDays(120).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+            //    Hub.RegisterTemplateAsync(deviceToken, "defaultTemplate", AppConstants.APNTemplateBody, templateExpiration, tags, (errorCallback) =>
+            //    {
+            //        if (errorCallback != null)
+            //        {
+            //            if (errorCallback != null)
+            //            {
+            //                Debug.WriteLine($"RegisterTemplateAsync error: {errorCallback}");
+            //            }
+            //        }
+            //    });
+            //});
         }
     }
 }

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Venturis.OpenImageFiles">
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="Maroon">
+            <Image x:Name="backgroundImage" 
+                   Source="https://s9.postimg.org/aq1jt3fu7/handshake_87122244_std.jpg" 
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"   
+                   AbsoluteLayout.LayoutFlags="All" 
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="FillAndExpand" 
+                   Aspect="Fill"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

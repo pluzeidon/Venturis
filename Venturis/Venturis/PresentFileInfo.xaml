@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Venturis.PresentFileInfo">
+    <ContentPage.Content>
+        <RelativeLayout>
+            <StackLayout VerticalOptions="Start" BackgroundColor="Transparent"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+                <Image Source="Icon.png" VerticalOptions="Center" />
+            </StackLayout>
+            
+            <StackLayout VerticalOptions="Start" BackgroundColor="Transparent"
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.8}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.30}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6}">
+                <!-- Mid Content -->
+                <Grid Padding="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Carga de Comprobantes" 
+                           FontAttributes="Bold" 
+                           Grid.Row="0" 
+                           Grid.Column="0" 
+                           Grid.ColumnSpan="3"               
+                           FontSize="Large"/>
+                    <Label Text="Información del Archivo" 
+                           FontSize="Medium"               
+                           Grid.Row="3" 
+                           Grid.Column="0" 
+                           Grid.ColumnSpan="3"/>
+
+                    <Label Text="Nombre" 
+                           Grid.Row="4" 
+                           Grid.Column="0" 
+                           VerticalOptions="Center"/>
+                    <Entry x:Name="txtArchivo"
+                           Placeholder="Archivo.txt" 
+                           IsEnabled="False"
+                           Grid.Row="4" 
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2">
+                    </Entry>
+
+                    <Label Text="Tipo" 
+                           Grid.Row="5" 
+                           Grid.Column="0" 
+                           VerticalOptions="Center"/>
+                    <Entry x:Name="txtTipo"
+                           Placeholder="Imagen" 
+                           IsEnabled="False"
+                           Grid.Row="5" 
+                           Grid.Column="1" 
+                           Grid.ColumnSpan="2">
+                    </Entry>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="End" BackgroundColor="Transparent"
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.80}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.2}">
+                <!-- Bottom Content -->
+                <Button Text="Vizualizar" x:Name="Vizualizar" Clicked="Vizualizar_Clicked" />
+                <Button Text="Enviar" x:Name="Enviar" Clicked="Enviar_Clicked" />
+            </StackLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

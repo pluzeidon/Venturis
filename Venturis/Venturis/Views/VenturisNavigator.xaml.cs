@@ -168,6 +168,8 @@ namespace Venturis.Views
 
             //return "http://129.213.116.148:8180/aplpr01/f?p=111";
 
+            //return "https://qdxcloud01.net/aplpr01/f?p=111:1:10107162832254::NO:1::";  // CAT 31-10-2019
+
             return "https://venturisapp.net/aplpr01/f?p=111";  // CAT 31-10-2019
 
             //return  "http://venturisexpenses-001-site1.etempurl.com/login.aspx";
@@ -240,5 +242,7 @@ namespace Venturis.Views
         {
 
         }
+        
+
     }
 }

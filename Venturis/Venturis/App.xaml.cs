@@ -7,6 +7,7 @@ namespace Venturis
 {
     public partial class App : Application
     {
+        NavigationPage _navigationRoot;
         public App()
         {
             InitializeComponent();
@@ -30,6 +31,25 @@ namespace Venturis
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        //public void DisplayThePDF(string url)
+        //{
+        //    //var openFilePage = new OpenFilesPage(url); ;
+        //    MainPage = new OpenFilesPage(url);
+            
+        //}
+
+        //public void DisplayTheImage(string url)
+        //{
+        //    //var openImageFiles = new OpenImageFiles(url); ;
+        //    MainPage = new OpenImageFiles(url);
+        //}
+
+        public void PresentFileInfo(string url)
+        {
+            //MainPage = new PresentFileInfo(url);
+            MainPage = new NavigationPage(new PresentFileInfo(url));
         }
     }
 }
