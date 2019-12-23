@@ -65,80 +65,28 @@ namespace Venturis.Droid
 
             IsPlayServicesAvailable();
             CreateNotificationChannel();
-            //SetContentView(Resource.Layout.SplashScreen);
             Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             _mainForms = new App();
 
             LoadApplication(_mainForms);
-
-            //Intent intent = Intent;
-
-            //string action = intent.Action;
-
-            //string type = intent.Type;
-
-            //if (Intent.ActionSend.Equals(action) && type != null)
-            //{
-
-            //    if (type.StartsWith("image/"))
-            //    {
-
-            //        //handleSendImage(intent); // Handle single image being sent
-
-            //    }
-
-            //}
-            //else if (Intent.ActionSendMultiple.Equals(action) && type != null)
-            //{
-
-            //    if (type.StartsWith("image/"))
-            //    {
-
-            //        //handleSendMultipleImages(intent); // Handle multiple images being sent
-
-            //    }
-            //}
-
             Intent intent = Intent;
             string type = intent.Type;
             if (Intent.Action == Intent.ActionSend)
             {
                 var pdf = Intent.ClipData.GetItemAt(0);
-
                 var uriFromExtras = Intent.GetParcelableExtra(Intent.ExtraStream) as Android.Net.Uri;
                 var subject = Intent.GetStringExtra(Intent.ExtraSubject);
-
                 var pdfStream = ContentResolver.OpenInputStream(pdf.Uri);
-
-                //Uri uri = new Uri(pdf.Uri);
-                //if (uri.IsFile)
-                //{
                 string filename = pdf.Uri.LastPathSegment;
                 FileInfo fi = new FileInfo(pdf.Uri.EncodedPath);
-                //}
-
                 var memOfPdf = new System.IO.MemoryStream();
                 pdfStream.CopyTo(memOfPdf);
-
                 var docsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
                 var filePath = System.IO.Path.Combine(docsPath, filename);
-                
-
                 System.IO.File.WriteAllBytes(filePath, memOfPdf.ToArray());
-
                 _mainForms.PresentFileInfo(filePath);
-
-                //if (type.StartsWith("image/"))
-                //{
-                //    _mainForms.DisplayTheImage(filePath);
-                //}
-                //else if (type.StartsWith("application/pdf"))
-                //{
-                //    _mainForms.DisplayThePDF(filePath);
-                //}
-
             }
         }
 
@@ -207,6 +155,18 @@ namespace Venturis.Droid
         {
             var register = DependencyService.Get<IRegisterDevice>();
             register.RegisterDevice(userId);
+
+            var docsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var filePath = System.IO.Path.Combine(docsPath, "userid.txt");
+            System.IO.File.Delete(filePath);
+            if (!File.Exists(filePath))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(filePath))
+                {
+                    sw.WriteLine(userId);
+                }
+            }
         }
 
     }

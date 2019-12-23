@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Refit;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Venturis.Interfaces;
+using Venturis.Model;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +15,8 @@ namespace Venturis
     {
         string _fileLocation;
         NavigationPage _navigationRoot;
+        IMyAPI myAPI;
+        string sMIME_TYPE;
         public PresentFileInfo(string fileLocation)
         {
             InitializeComponent();
@@ -24,16 +26,19 @@ namespace Venturis
             if (fi.FullName.Contains(".pdf"))
             {
                 txtTipo.Text = "PDF";
+                sMIME_TYPE = "application/pdf";
                 Vizualizar.IsEnabled = true;
             }
             else if (fi.FullName.Contains(".xml"))
             {
                 txtTipo.Text = "XML";
+                sMIME_TYPE = "application/xml";
                 Vizualizar.IsEnabled = false;
             }
-            else 
+            else
             {
                 txtTipo.Text = "Imagen";
+                sMIME_TYPE = "image/jpeg";
                 Vizualizar.IsEnabled = true;
             }
         }
@@ -62,7 +67,7 @@ namespace Venturis
         {
             if (txtTipo.Text == "PDF")
             {
-                await Navigation.PushAsync(new OpenFilesPage(_fileLocation) );
+                await Navigation.PushAsync(new OpenFilesPage(_fileLocation));
             }
             else
             {
@@ -79,7 +84,26 @@ namespace Venturis
 
                 if (current == NetworkAccess.Internet)
                 {
-                    await DisplayAlert("Información", "El Archivo fue enviado exitosamente", "OK");
+                    try
+                    {
+                        myAPI = RestService.For<IMyAPI>("https://venturisapp.net/aplpr01/xpm/comprobantes");
+                        PostContent post = new PostContent();
+                        var docsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                        var filePath = System.IO.Path.Combine(docsPath, "userid.txt");
+                        string readText = File.ReadAllText(filePath);
+                        post.sUSUARIO = readText.Substring(0,readText.Length-1);
+                        post.sFILE_NAME = txtArchivo.Text;
+                        post.sMIME_TYPE = sMIME_TYPE;
+                        Byte[] bytes = File.ReadAllBytes(_fileLocation);
+                        post.sCOMPROBANTE = Convert.ToBase64String(bytes);
+                        await myAPI.SumitPost(post);
+                        await DisplayAlert("Información", "El Archivo fue enviado exitosamente", "OK");
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlert("Error", "" + ex.Message, "OK");
+                    }
+                    
                 }
                 else
                 {
@@ -88,6 +112,6 @@ namespace Venturis
                 System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
             }
 
-        }
+        }       
     }
 }
